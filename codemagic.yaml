@@ -1,0 +1,22 @@
+workflows:
+  ios-build:
+    name: iOS Build
+    environment:
+      vars:
+        FLAVOR: default
+    scripts:
+      - name: Install CocoaPods
+        script: |
+          if [ -f "Podfile" ]; then
+            pod install
+          fi
+      - name: Build the app
+        script: |
+          xcodebuild -project CashappSpoof.xcodeproj \
+                     -scheme CashappSpoof \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     -archivePath $HOME/build/CashappSpoof.xcarchive \
+                     clean archive
+    artifacts:
+      - $HOME/build/CashappSpoof.xcarchive/Products/Applications/*.ipa
