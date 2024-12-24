@@ -17,6 +17,8 @@ workflows:
                      -sdk iphoneos \
                      -configuration Release \
                      -archivePath $HOME/build/CashappSpoof.xcarchive \
-                     clean archive
+                     clean archive \
+                     CODE_SIGN_STYLE=Automatic \
+                     -allowProvisioningUpdates
     artifacts:
       - $HOME/build/CashappSpoof.xcarchive/Products/Applications/*.ipa
